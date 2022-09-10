@@ -1,17 +1,70 @@
 <template>
-  <div>
-    <form @submit.prevent="login">
-      <h2>Login</h2>
-      <input type="email" placeholder="Email address..." v-model="email" />
-      <input type="password" placeholder="password..." v-model="password" />
-      <button type="submit">Login</button>
-    </form>
+  <div class="main">
+    <v-card id="registerCard">
+      <div class="form">
+        <h1 class="title">LOG IN</h1>
+        <form @submit.prevent="login">
+          <div class="inputs">
+            <div id="input">
+              <v-text-field
+                label="Email"
+                v-model="email"
+                type="Email"
+                outlined
+                required
+                dense
+                class="mb-n3"
+              ></v-text-field>
+            </div>
+
+            <div id="input">
+              <v-text-field
+                label="Password"
+                v-model="password"
+                type="Password"
+                outlined
+                dense
+                class="mb-n3"
+                required
+              ></v-text-field>
+            </div>
+          </div>
+          <v-btn color="primary" class="white--text" type="submit">
+            Sign In
+            <v-icon right dark> mdi-arrow-right-circle </v-icon>
+          </v-btn>
+          <div justify="center">
+            <small>
+              Create new account ?
+              <router-link to="/Register">Register</router-link>
+            </small>
+          </div>
+        </form>
+      </div>
+      <div class="card-img">
+        <lottie-player
+          src="https://assets5.lottiefiles.com/packages/lf20_dn6rwtwl.json"
+          loop
+          background="transparent"
+          speed="1"
+          style="width: 200px; height: 200px"
+          autoplay
+        ></lottie-player>
+      </div>
+    </v-card>
   </div>
 </template>
 
 <script>
 import firebase from "firebase";
 export default {
+  data() {
+    return {
+      email: "",
+      password: "",
+    };
+  },
+
   methods: {
     login() {
       firebase
@@ -30,4 +83,82 @@ export default {
 </script>
 
 <style>
+.main {
+  background-color: #fcf5ff;
+  width: 100vw;
+  height: 92vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#registerCard {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 18px;
+  max-width: 580px;
+  height: 80vh;
+
+  width: 70%;
+  min-width: 300px;
+}
+.title {
+  font-size: 18px;
+  font-weight: bold;
+  color: rgb(69, 15, 94);
+  margin-bottom: 10px;
+}
+
+.form {
+  width: 50%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-img {
+  border-radius: 18px;
+  background: -webkit-linear-gradient(
+    45deg,
+    rgb(255, 116, 116),
+    rgb(221, 68, 221)
+  );
+  width: 50%;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+v-btn {
+  background-color: green;
+}
+@media (max-width: 780px) {
+  .main {
+    width: 100vw;
+    margin: 0px !important;
+  }
+  #registerCard {
+    height: auto;
+    padding: 5px 0px;
+    width: 90%;
+    display: flex;
+    margin: 0px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
+  }
+  .form {
+    width: 100%;
+  }
+  .title {
+    margin: 0px;
+    font-size: 14px;
+  }
+  .card-img {
+    height: 200px;
+  }
+}
 </style>
+

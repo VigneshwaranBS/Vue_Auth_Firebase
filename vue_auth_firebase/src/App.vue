@@ -1,15 +1,19 @@
 <template>
   <v-app>
-    <v-app-bar app dark>
+    <v-app-bar color="primary" app dark>
       <div id="nav">
-        <router-link to="/">Home</router-link> |
-        <router-link to="/register">Register</router-link> |
-        <router-link to="/dashboard">Dashboard</router-link> |
-        <button @click="logout">Logout</button>
-        <!-- <li>Home</li>
-        <li>Register</li>
-        <li>Dashboard</li>
-        <li>Logout</li> -->
+        <!-- <div class="anim">
+          <lottie-player
+            src="https://assets3.lottiefiles.com/packages/lf20_WZ1sT4.json"
+            loop
+            background="transparent"
+            speed="1"
+            style="width: 150px; height: 150px"
+            autoplay
+          ></lottie-player>
+        </div> -->
+        <v-spacer></v-spacer>
+        <div class="logout"><button @click="logout">Logout</button></div>
       </div>
     </v-app-bar>
 
@@ -46,7 +50,8 @@ export default {
 </script>
 
 <style >
-input {
-  margin-right: 20px;
+#nav {
+  display: flex;
+  /* justify-content: flex-end; */
 }
 </style>
