@@ -2,7 +2,19 @@
   <div class="main">
     <v-card id="registerCard">
       <div class="form">
-        <h1 class="title">Registration</h1>
+        <h1 class="title">registration</h1>
+        <div class="google">
+          <div class="google-button" @click="socialLogin">
+            <img
+              class="google-icon"
+              href="#"
+              src="../assets/icons8-google.svg"
+              alt="Image alt"
+            />
+            <a class="google-word">Continue with Google</a>
+          </div>
+        </div>
+        <p>OR</p>
         <form @submit.prevent="register">
           <div class="inputs">
             <div id="input">
@@ -74,6 +86,20 @@ export default {
         })
         .catch((error) => {
           alert(error.message);
+        });
+    },
+    socialLogin() {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then((result) => {
+          var token = result.credential.accessToken;
+          console.log(token);
+          this.$router.push("/dashboard");
+        })
+        .catch((err) => {
+          alert("Oops. " + err.message);
         });
     },
   },

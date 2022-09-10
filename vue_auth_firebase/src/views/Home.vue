@@ -3,6 +3,18 @@
     <v-card id="registerCard">
       <div class="form">
         <h1 class="title">LOG IN</h1>
+        <div class="google">
+          <div class="google-button" @click="socialLogin">
+            <img
+              class="google-icon"
+              href="#"
+              src="../assets/icons8-google.svg"
+              alt="Image alt"
+            />
+            <a class="google-word">Continue with Google</a>
+          </div>
+        </div>
+        <p>OR</p>
         <form @submit.prevent="login">
           <div class="inputs">
             <div id="input">
@@ -78,6 +90,21 @@ export default {
           alert(error.message);
         });
     },
+    socialLogin() {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+
+        .then((result) => {
+          var token = result.credential.accessToken;
+          console.log(token);
+          this.$router.push("/dashboard");
+        })
+        .catch((err) => {
+          alert("Oops. " + err.message);
+        });
+    },
   },
 };
 </script>
@@ -133,6 +160,34 @@ export default {
 }
 v-btn {
   background-color: green;
+}
+.google {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+.google-button {
+  height: 30px;
+  flex-wrap: wrap;
+  border-radius: 5px;
+  background-color: #eee;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 10px;
+  width: 207px;
+}
+.google-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 30px;
+  margin-top: 5px;
+}
+.google-word {
+  margin-left: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #000;
+  margin-top: 6px;
 }
 @media (max-width: 780px) {
   .main {

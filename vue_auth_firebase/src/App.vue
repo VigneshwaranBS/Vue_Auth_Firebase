@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar color="primary" app dark>
+    <v-app-bar color="purple darken-2 " app dark>
       <div id="nav">
         <!-- <div class="anim">
           <lottie-player
@@ -13,7 +13,11 @@
           ></lottie-player>
         </div> -->
         <v-spacer></v-spacer>
-        <div class="logout"><button @click="logout">Logout</button></div>
+        <!-- <div class="logout"><button @click="logout">Logout</button></div> -->
+        <v-btn text class="white--text" type="submit" @click="logout">
+          Log Out
+          <v-icon right dark> mdi-logout-variant </v-icon>
+        </v-btn>
       </div>
     </v-app-bar>
 
